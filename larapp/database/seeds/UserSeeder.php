@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
 
             'fullname' => 'Alejo López',
             'email' => 'alejoloopez5@gmail.com',
-            'phone' => '3192768238',
+            'phone' => 3192768238,
             'birthdate' => '1987/08/20',
             'gender' => 'Male',
             'address' => 'calle falsa 123',
@@ -30,11 +30,14 @@ class UserSeeder extends Seeder
         $usr = new User;
         $usr->fullname = 'Manuel Gutierrez';
         $usr->email = 'malg.nmg@hotmail.com';
-        $usr->phone = '3502487845';
+        $usr->phone = 3502487845;
         $usr->birthdate = '1988/08/20';
         $usr->gender = 'Male';
         $usr->address = 'Calle verdadera 654';
         $usr->password = bcrypt('customer');        
         $usr->save();
+
+        //factory
+        factory(User::class, 100)->create();
     }
 }
