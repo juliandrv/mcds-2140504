@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('helloworld', function () {
+    dd('Hello alejo');
+});
+
+Route::get('users', function () {
+    dd(App\User::all()); 
+});
+
+Route::get('user/{id}', function ($id) {
+    dd(App\User::findOrFail($id)); 
+});
+
+Route::get('edades', function () {
+    $users = (App\User::all()->take(10));
+    for($i = 0; $i<count($users); $i++) {
+        $userAge = Carbon::parse($users[$i]->birthdate)->age;
+        print $users[$i]->fullname." - "."$userAge"." years old; ";
+        
+    }
+});
+
+
+
+
+
+
