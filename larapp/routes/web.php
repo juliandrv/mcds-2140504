@@ -34,7 +34,8 @@ Route::get('edades', function () {
     $users = (App\User::all()->take(10));
     for($i = 0; $i<count($users); $i++) {
         $userAge = Carbon::parse($users[$i]->birthdate)->age;
-        print $users[$i]->fullname." - "."$userAge"." years old; ";
+        $created = $users[$i]->created_at->diffForHumans();
+        print $users[$i]->name." - "."$userAge"." years old"." - "." created ".$created."; ";
         
     }
 });
