@@ -35,9 +35,10 @@ Route::get('edades', function () {
     for($i = 0; $i<count($users); $i++) {
         $userAge = Carbon::parse($users[$i]->birthdate)->age;
         $created = $users[$i]->created_at->diffForHumans();
-        print $users[$i]->name." - "."$userAge"." years old"." - "." created ".$created."; ";
-        
+        $rs[] = $users[$i]->fullname." - "."$userAge"." years old"." - "." created ".$created."; ";   
     }
+
+    return view('callenge', ['rs' => $rs]);
 });
 
 
@@ -45,3 +46,7 @@ Route::get('edades', function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
