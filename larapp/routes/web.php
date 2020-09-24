@@ -41,12 +41,10 @@ Route::get('edades', function () {
     return view('callenge', ['rs' => $rs]);
 });
 
+Route::get('examples', function() {
+    $users = (App\User::all()->take(5));
+    return view('example',['show' => 'both', 'day' => 'wednesday','users' => $users]);
+});
 
 
 
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
