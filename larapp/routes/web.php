@@ -51,4 +51,6 @@ Route::get('examples', function() {
 
 Auth::routes();
 
+Route::get('locale/{locale}', 'LocaleController@index');
+
 Route::get('/home', 'HomeController@index')->name('home');

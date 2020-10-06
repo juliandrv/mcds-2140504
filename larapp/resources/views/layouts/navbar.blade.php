@@ -1,3 +1,4 @@
+<html lang="en">
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -15,17 +16,33 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        <!-- Authentication Links -->                                                                    
 
-
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Languaje
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">ES</a>
-                    <a class="dropdown-item" href="#">EN</a>
-        </li>
+                        @php $locale = session()->get('locale'); @endphp
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @switch($locale)
+                                    @case('en')
+                                        <img src="{{asset('imgs/en.png')}}" width="20px"> English
+                                        @break
+                                    @case('es')
+                                        <img src="{{asset('imgs/es.png')}}" width="20px"> Español
+                                        @break
+                                    @default
+                                        <img src="{{asset('imgs/es.png')}}" width="20px"> Español
+                                @endswitch
+                                <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('locale/en') }}">
+                                    <img src="{{asset('imgs/en.png')}}" width="20px"> English
+                                </a>
+                                <a class="dropdown-item" href="{{ url('locale/es') }}">
+                                    <img src="{{asset('imgs/es.png')}}" width="20px"> Español
+                                </a>
+                            </div>
+                        </li>
 
                         @guest
                             <li class="nav-item">
@@ -39,14 +56,14 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->fullname }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                                     document.getElementById('logout-form').submit();">                                        
+                                        @lang('general.link-close')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -59,3 +76,4 @@
                 </div>
             </div>
         </nav>
+</html>
