@@ -47,9 +47,13 @@ Route::get('examples', function() {
 });
 
 
-
-
 Auth::routes();
+
+Route::resources([
+    'users' => 'UserController',
+    //'categories' => 'CategoryController',
+    //'games' => 'GameController'
+]);
 
 Route::get('locale/{locale}', 'LocaleController@index');
 
