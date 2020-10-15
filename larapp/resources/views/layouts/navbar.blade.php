@@ -22,6 +22,8 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                 <!-- Authentication Links -->
+                @guest
                 @php $locale = session()->get('locale'); @endphp
                 <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -49,8 +51,7 @@
                         </div>
                     </li>
                     <li class="nav-item d-none d-sm-block"><span class="nav-link">|</span></li>
-                <!-- Authentication Links -->
-                @guest
+               
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">
                             <i class="fa fa-user-lock"></i> 
@@ -73,6 +74,11 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('users') }}">
+                                <i class="fa fa-users"></i>
+                                 Módulo Usuarios 
+                            </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
