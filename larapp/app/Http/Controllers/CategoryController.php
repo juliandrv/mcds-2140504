@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
+
+    public function __construct() 
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = category::paginate(10);
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -43,9 +52,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view('categories.show')->with('category', $category);
     }
 
     /**
@@ -54,9 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -66,9 +75,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+                //dd($request->all());
+                 $category->name      = $request->name;
+                 $category->description   = $request->description;                
+                 if ($request->hasFile('image')) {
+                     $file = time().'.'.$request->image->extension();
+                     $request->image->move(public_path('imgs'), $file);
+                     $category->image = 'imgs/'.$file;
+                 }
+        
+                 if($category->save()) {
+                     return redirect('categories')->with('message', 'La Categoria: '.$category->name.' fue Modificada con Exito!');
+                 } 
     }
 
     /**
