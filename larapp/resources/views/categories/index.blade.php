@@ -27,14 +27,12 @@
                             <td class="d-none d-sm-table-cell">{{ $category->description }}</td>
 							<td>
                                 <a href="{{ url('categories/'.$category->id) }}" class="btn btn-sm btn-light"><i class="fa fa-search"></i></a>
-                                <a href="{{ url('categories/'.$category->id.'/edit') }}" class="btn btn-sm btn-light"><i class="fa fa-pen"></i></a>
-                                <a href="" class="btn btn-sm btn-light"><i class="fa fa-pen"></i></a>
-								{{-- 								
-								<form action="{{ url('users/'.$category->id) }}" method="POST" class="d-inline">
+                                <a href="{{ url('categories/'.$category->id.'/edit') }}" class="btn btn-sm btn-light"><i class="fa fa-pen"></i></a>                                							 								
+								<form action="{{ url('categories/'.$category->id) }}" method="POST" class="d-inline">
 									@csrf
 									@method('delete')
 									<button type="button" class="btn btn-sm btn-danger btn-delete"><i class="fa fa-trash"></i></button>
-								</form> --}}
+								</form>
 							</td>
 						</tr>
 					@endforeach

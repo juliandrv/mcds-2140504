@@ -29,4 +29,7 @@ return [
     'link-close'     => 'Cerrar Sesión',
     // Dashboard
     'title-dashboard' => 'Escritorio',
+    // Register Page Category
+    'label-name'  => 'Nombre',
+    'label-description'  => 'Descripcion',
 ];

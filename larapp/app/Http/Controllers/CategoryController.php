@@ -32,7 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -41,9 +41,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = new Category;
+        $category->name          = $request->name;
+        $category->description   = $request->description;                
+        if ($request->hasFile('image')) {
+            $file = time().'.'.$request->image->extension();
+            $request->image->move(public_path('imgs'), $file);
+            $category->image = 'imgs/'.$file;
+        }
+
+        if($category->save()) {
+            return redirect('categories')->with('message', 'La Categoria: '.$category->name.' fue Adicionada con Exito!');
+        } 
     }
 
     /**
@@ -97,8 +108,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        if($category->delete()) {
+            return redirect('categories')->with('message', 'La Categoria: '.$category->name.' fue Eliminada con Exito!');
+        } 
     }
 }

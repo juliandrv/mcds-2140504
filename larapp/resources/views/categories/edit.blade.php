@@ -60,7 +60,7 @@
                                     <img src="{{ asset($category->image) }}" class="img-thumbnail" id="preview" width="120px">
                                 </div>
                                 <div class="custom-file">
-                                   <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                                   <input type="file" class="custom-file-input @error('image') is-invalid @enderror" id="photo" name="image" accept="image/*">
                                    <label class="custom-file-label" for="customFile"> 
                                    	 <i class="fa fa-upload"></i> 
                                    	 Imagen
