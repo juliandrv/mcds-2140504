@@ -55,6 +55,8 @@ Route::resources([
     'games' => 'GameController'
 ]);
 
+Route::get('generate/pdf/users', 'UserController@pdf');
+
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
