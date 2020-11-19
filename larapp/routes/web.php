@@ -57,6 +57,10 @@ Route::resources([
 
 Route::get('generate/pdf/users', 'UserController@pdf');
 
+Route::get('generate/excel/users', 'UserController@excel');
+
+Route::post('import/excel/users', 'UserController@import');
+
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');

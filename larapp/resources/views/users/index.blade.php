@@ -14,6 +14,20 @@
 				<i class="fa fa-file-pdf"></i>
 				Generar PDF
 			</a>
+			<a href="{{ url('generate/excel/users') }}" class="btn btn-larapp"> 
+				<i class="fa fa-file-excel"></i>
+				Exportar Excel 
+			</a>
+
+			<form action="{{ url('import/excel/users') }}" method="POST" enctype="multipart/form-data" class="d-inline">
+				@csrf
+				<input type="file" class="d-none" id="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+				<button type="button" class="btn btn-success btn-excel">
+					<i class="fa fa-file-excel"></i> 
+					Importar Usuarios
+				</button>
+			</form>
+
 			<br><br>
 			<table class="table table-striped table-hover">
 				<thead>
