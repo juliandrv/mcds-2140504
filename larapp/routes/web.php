@@ -61,6 +61,10 @@ Route::get('generate/excel/users', 'UserController@excel');
 
 Route::post('import/excel/users', 'UserController@import');
 
+Route::post('users/search', 'UserController@search');
+
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

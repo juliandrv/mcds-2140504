@@ -17,7 +17,7 @@
 			<a href="{{ url('generate/excel/users') }}" class="btn btn-larapp"> 
 				<i class="fa fa-file-excel"></i>
 				Exportar Excel 
-			</a>
+			</a>			
 
 			<form action="{{ url('import/excel/users') }}" method="POST" enctype="multipart/form-data" class="d-inline">
 				@csrf
@@ -27,6 +27,14 @@
 					Importar Usuarios
 				</button>
 			</form>
+			
+			<input type="hidden" id="tmodel" value="users">
+			<input type="text" id="qsearch" name="qsearch" class="form-search" autocomplete="off" placeholder="Buscar...">
+			<br>
+			
+			<div class="loader d-none text-center mt-5">
+				<img src="{{asset('imgs/loader.gif')}}" width="100px">
+			</div>
 
 			<br><br>
 			<table class="table table-striped table-hover">
@@ -39,7 +47,7 @@
 						<th>Acciones</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="content">
 					@foreach ($users as $user)
 						<tr>
 							<td>{{ $user->fullname }}</td>
