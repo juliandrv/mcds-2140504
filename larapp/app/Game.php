@@ -25,5 +25,10 @@ class Game extends Model
         return $this->belongsTo('App\Category');
     }
     
+    public function scopeNames($games, $q) {
+        if (trim($q) ) {
+            $games->where('name','LIKE',"%$q%");
+        }
+    }
 
 }

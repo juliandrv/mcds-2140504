@@ -74,6 +74,8 @@ Route::post('import/excel/games', 'GameController@import');
 
 Route::post('users/search', 'UserController@search');
 
+Route::post('games/search', 'GameController@search');
+
 Route::get('locale/{locale}', 'LocaleController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');

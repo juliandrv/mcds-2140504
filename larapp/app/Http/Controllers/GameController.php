@@ -157,4 +157,10 @@ class GameController extends Controller
         \Excel::import(new GameImport, $file);
         return redirect()->back()->with('message', 'juegos importados con exito!');
     }
+
+    public function search(Request $request) {
+        
+        $games = Game::names($request->q)->orderBy('id','ASC')->paginate(10);
+        return view('games.search')->with('games', $games);
+    }
 }

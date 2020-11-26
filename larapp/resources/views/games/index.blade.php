@@ -27,7 +27,7 @@ Adicionar Juego
     </button>
 </form>
 
-<input type="hidden" id="tmodel" value="users">
+<input type="hidden" id="tmodel" value="games">
 <input type="text" id="qsearch" name="qsearch" class="form-search" autocomplete="off" placeholder="Buscar...">
 <br>
 
@@ -45,7 +45,7 @@ Adicionar Juego
 <th>Acciones</th>
 </tr>
 </thead>
-<tbody>
+<tbody id="content">
 @foreach ($games as $game)
 <tr>
 <td>{{ $game->name }}</td>
