@@ -49,17 +49,28 @@ Route::get('examples', function() {
 
 Auth::routes();
 
-Route::resources([
-    'users' => 'UserController',
-    'categories' => 'CategoryController',
-    'games' => 'GameController'
-]);
+// Group Middleware
+Route::group(['middleware' => 'admin'], function() {
+    // Resources
+    Route::resources([
+        'users'       => 'UserController',
+        'categories'  => 'CategoryController',
+        'games'       => 'GameController',
+    ]);
+});
+
 
 Route::get('generate/pdf/users', 'UserController@pdf');
 
+Route::get('generate/pdf/games', 'GameController@pdf');
+
 Route::get('generate/excel/users', 'UserController@excel');
 
+Route::get('generate/excel/games', 'GameController@excel');
+
 Route::post('import/excel/users', 'UserController@import');
+
+Route::post('import/excel/games', 'GameController@import');
 
 Route::post('users/search', 'UserController@search');
 
