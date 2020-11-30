@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('favicon/apple-icon-144x144.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('favicon/apple-icon-152x152.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon/android-icon-192x192.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
@@ -31,6 +32,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fontawesome-all.min.css') }}" rel="stylesheet">
 </head>
+
 <body>
     @include('layouts.navbar')
     <main class="container mt-5">
@@ -42,25 +44,26 @@
     <script>
         $(document).ready(function() {
             /* - - -*/
-            @if (session('message'))
-                Swal.fire({
-                    title: 'Felicitaciones',
-                    text: '{{ session('message') }}',
-                    icon: 'success',
-                    confirmButtonColor: '#1e5f74',
-                    confirmButtonText: 'Aceptar'
-                });
+            @if(session('message'))
+            Swal.fire({
+                title: 'Felicitaciones',
+                text: '{{ session(' message ') }}',
+                icon: 'success',
+                confirmButtonColor: '#1e5f74',
+                confirmButtonText: 'Aceptar'
+            });
             @endif
 
-            @if (session('error'))
-                Swal.fire({
-                  position: 'top-end',
-                  icon: 'error',
-                  title: 'Acceso Denegado',
-                  text: '{{ session('error') }}',
-                  showConfirmButton: false,
-                  timer: 2500
-                });
+            @if(session('error'))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Acceso Denegado',
+                text: '{{ session('
+                error ') }}',
+                showConfirmButton: false,
+                timer: 2500
+            });
             @endif
             /* - - -*/
 
@@ -74,21 +77,21 @@
                     cancelButtonColor: '#d0211c',
                     cancelButtonText: 'Cancelar',
                     confirmButtonColor: '#1e5f74',
-                    confirmButtonText: 'Aceptar',  
+                    confirmButtonText: 'Aceptar',
                 }).then((result) => {
-                    if(result.value) {
+                    if (result.value) {
                         $(this).parent().submit();
                     }
                 });
             });
             /* - - -*/
             $('#photo').change(function(event) {
-               let reader = new FileReader();
-               reader.onload = function(event) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
                     $('#preview').attr('src', event.target.result);
-               }
-               reader.readAsDataURL(this.files[0]);
-            });            
+                }
+                reader.readAsDataURL(this.files[0]);
+            });
             /* - - -*/
             $('.btn-excel').click(function(event) {
                 $('#file').click();
@@ -98,16 +101,19 @@
             });
             /* - - -*/
 
-            $('body').on('keyup','#qsearch', function(event){
+            $('body').on('keyup', '#qsearch', function(event) {
                 event.preventDefault();
                 $q = $(this).val();
                 $t = $('input[name=_token]').val();
                 $m = $('#tmodel').val();
                 $('.loader').removeClass('d-none');
                 $('.table').hide();
-                $sto = setTimeout(function(){
+                $sto = setTimeout(function() {
                     clearTimeout($sto);
-                    $.post($m+'/search', {q: $q, _token: $t}, function(data) {
+                    $.post($m + '/search', {
+                        q: $q,
+                        _token: $t
+                    }, function(data) {
                         $('.loader').addClass('d-none');
                         $('#content').html(data);
                         $('.table').fadeIn('slow');
@@ -117,4 +123,5 @@
         });
     </script>
 </body>
+
 </html>
